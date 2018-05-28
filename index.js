@@ -1,12 +1,11 @@
 'use strict';
 
 // Imports dependencies and set up http server
-const
-  express = require('express'),
-  bodyParser = require('body-parser')
-  request = requeire('request')
+const express = require('express'),
+const bodyParser = require('body-parser')
+const request = requeire('request')
 
-  app = express()
+const app = express()
 
 app.set('port', (process.env.PORT || 5000))
 
