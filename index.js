@@ -3,7 +3,7 @@
 // Imports dependencies and set up http server
 const express = require('express'),
 const bodyParser = require('body-parser')
-const request = requeire('request')
+const request = require('request')
 
 const app = express()
 
