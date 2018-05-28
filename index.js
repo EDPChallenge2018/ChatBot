@@ -21,12 +21,12 @@ app.get('/', function(req, res) {
 
 // facebook
 app.get('/webhook/', function(req, res) {
-	if (req.query['hub.verify_token'] == "edpchallenge") {
+	if (req.query['hub.verify_token'] === "edpchallenge") {
 		res.send(req.query['hub.challenge'])
 	}
 	res.send("wrong token")
 })
 
 app.listen(app.get('port'), function() {
-	console.log("running:port")
+	console.log("running: port")
 })
