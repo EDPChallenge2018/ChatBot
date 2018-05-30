@@ -1,66 +1,66 @@
-'use strict'
+'use strict';
 
 // Imports dependencies and set up http server
-const express = require('express')
-const bodyParser = require('body-parser')
-const request = require('request')
-const app = express()
+const express = require('express');
+const bodyParser = require('body-parser');
+const request = require('request');
+const app = express();
 
-app.set('port', (process.env.PORT || 5000))
+app.set('port', (process.env.PORT || 5000));
 
 //Allow us to process the data
-app.use(bodyParser.urlencoded({extended: false}))
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 // routes
 
 app.get('/', function(req, res) {
-	res.send("EZPZ")
-})
+	res.send("EZPZ");
+});
 
-let token = "EAAbIskuk8dIBAJYXg4nlKFpnY28a9vxcTbuzPxFn2jk7QCCTTAa7UV29o9MybSl1rQWSs4jzpZAZAPZCdZCYYT1cTZC4DYySZCZAi8OzSRj4aN8EaDh6ZBk30YFbBCrg9bqfWaic1RH431UJCBGhNOtUgZBxGZBnm3yX8ablp7FvyChiDGvmTpVhwNkMMIzlJQ7hMZD"
+let token = "EAAbIskuk8dIBAJYXg4nlKFpnY28a9vxcTbuzPxFn2jk7QCCTTAa7UV29o9MybSl1rQWSs4jzpZAZAPZCdZCYYT1cTZC4DYySZCZAi8OzSRj4aN8EaDh6ZBk30YFbBCrg9bqfWaic1RH431UJCBGhNOtUgZBxGZBnm3yX8ablp7FvyChiDGvmTpVhwNkMMIzlJQ7hMZD";
 // facebook
 app.get('/webhook/', function(req, res) {
 	if (req.query['hub.verify_token'] === "edpchallenge") {
-		res.send(req.query['hub.challenge'])
+		res.send(req.query['hub.challenge']);
 	}
-	res.send("wrong token")
-})
+	res.send("wrong token");
+});
 
 app.post('/webhook/', function(req, res){
-	let messaging_events = req.body.entry[0].messaging
+	let messaging_events = req.body.entry[0].messaging;
 	for (let i = 0; i < messaging_events.length; i++) {
-		let event = messaging_events[i]
-		let sender = event.sender.id
+		let event = messaging_events[i];
+		let sender = event.sender.id;
 		if (event.message && event.message.text) {
-			let text = event.message.text
-			decideMessage(sender, text)
-			sendText(sender, "Escreveu isto: " + text.substring(0,100))
+			let text = event.message.text;
+			decideMessage(sender, text);
+			sendText(sender, "Escreveu isto: " + text.substring(0,100));
 		}
 
 		if(event.postback) {
-			let text = JSON.stringify(event.postback)
-			decideMessage(sender, text)
-			continue
+			let text = JSON.stringify(event.postback);
+			decideMessage(sender, text);
+			return;
 		}
 	}
-	res.sendStatus(200)
-})
+	res.sendStatus(200);
+});
 
 function decideMessage(sender, text1) {
-	let text = text1.toLowerCase()
+	let text = text1.toLowerCase();
 	if ( text.includes("summer")) {
 
 	} else if (text.includes("ajuda")) {
-		sendGenericMessage(sender)
+		sendGenericMessage(sender);
 	} else{
-		sendText(sender, "QUEM E MAIS FIXE?")
-		sendButtonMessage(sender, "SERA QUE ISTO E FIXE?")
+		sendText(sender, "QUEM E MAIS FIXE?");
+		sendButtonMessage(sender, "SERA QUE ISTO E FIXE?");
 	}
 }
 function sendText(sender, text) {
-	let messageData = {text: text}
-	sendRequest(sender, messageData)
+	let messageData = {text: text};
+	sendRequest(sender, messageData);
 }
 function sendButtonMessage(sender, text){
 	let messageData = {
@@ -83,9 +83,9 @@ function sendButtonMessage(sender, text){
 	        ]
 	      }
 	    }
- 	}
+ 	};
 
- 	sendRequest(send, messageData)
+ 	sendRequest(sender, messageData);
 }
 
 function sendGenericMessage(sender) {
@@ -110,12 +110,12 @@ function sendGenericMessage(sender) {
 	        ]
 	      }
 	    }
-	}
-	sendRequest(sender, messageData)
+	};
+	sendRequest(sender, messageData);
 }
 
 function sendRequest(sender, text) {
-	//let messageData = {text:text}
+	let messageData = {text:text};
 	request({
 		url: "https://graph.facebook.com/v3.0/me/messages",
 		qs : {access_token: token},
@@ -126,17 +126,16 @@ function sendRequest(sender, text) {
 		}
 	}, function(error, response, body) {
 		if(error) {
-			console.log("sending error")
+			console.log("sending error");
 		} else if (response.body.error) {
-			console.log("response body error")
+			console.log("response body error");
 		}
-	})
+	});
 }
 
 app.listen(app.get('port'), function() {
-	console.log("running: port")
-})
-
+	console.log("running: port");
+});
 //<script>
 //window.fbAsyncInit = function() {
 //    FB.init({
