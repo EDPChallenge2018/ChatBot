@@ -34,7 +34,7 @@ app.post('/webhook/', function(req, res){
 		let sender = event.sender.id;
 		if (event.message && event.message.text) {
 			let text = event.message.text;
-			//decideMessage(sender, text);
+			decideMessage(sender, text);
 			sendText(sender, "Escreveu isto: " + text.substring(0,100));
 		}
 
