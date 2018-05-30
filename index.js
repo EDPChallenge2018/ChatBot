@@ -33,13 +33,87 @@ app.post('/webhook/', function(req, res){
 		let sender = event.sender.id
 		if (event.message && event.message.text) {
 			let text = event.message.text
-			sendText(sender, "Text echo: " + text.substring(0,100))
+			decideMessage(sender, text)
+			//sendText(sender, "meteu happy " + text.substring(0,100))
+		}
+
+		if(event.postback) {
+			let text = JSON.stringify(event.postback)
+			decideMessage(sender, text)
+			continue
 		}
 	}
 	res.sendStatus(200)
 })
+
+function decideMessage(sender, text1) {
+	let text = text1.toLowerCase()
+	if ( text.includes("summer")) {
+
+	} else if (text.includes("ajuda")) {
+		sendGenericMessage(sender)
+	} else{
+		sendText(sender, "QUEM E MAIS FIXE?")
+		sendButtonMessage(sender, "SERA QUE ISTO E FIXE?")
+	}
+}
 function sendText(sender, text) {
 	let messageData = {text: text}
+	sendRequest(sender, messageData)
+}
+function sendButtonMessage(sender, text){
+	let messageData = {
+	    "attachment":{
+	      "type":"template",
+	      "payload":{
+	        "template_type":"button",
+	        "text": text,
+	        "buttons":[
+	          {
+	            "type":"postback",
+	            "title":"EPAH E FIXE",
+	            "payload":"epah e fixe"
+	          },
+	          {
+	            "type":"postback",
+	            "title":"NAO E FIXE",
+	            "payload":"NAO e fixe"
+	          },
+	        ]
+	      }
+	    }
+ 	}
+
+ 	sendRequest(send, messageData)
+}
+
+function sendGenericMessage(sender) {
+	let messageData = {
+		"attachment":{
+	      "type":"template",
+	      "payload":{
+	        "template_type":"generic",
+	        "elements":[
+	           {
+	            "title":"Bem-vindo!",
+	            "image_url":"https://www.dinheirovivo.pt/wp-content/uploads/2015/10/ng3314379.jpg",
+	            "subtitle":"edp e muito fixe",
+	            "buttons":[
+	              {
+	                "type":"web_url",
+	                "url":"https://www.edp.pt/particulares/apoio-cliente/",
+	                "title":"Apoio ao cliente!"
+	              }       
+	            ]      
+	          }
+	        ]
+	      }
+	    }
+	}
+	sendRequest(sender, messageData)
+}
+
+function sendRequest(sender, text) {
 	request({
 		url: "https://graph.facebook.com/v3.0/me/messages",
 		qs : {access_token: token},
