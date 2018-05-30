@@ -115,7 +115,7 @@ function sendGenericMessage(sender) {
 }
 
 function sendRequest(sender, text) {
-	//let messageData = {text:text}
+	let messageData = {text:text}
 	request({
 		url: "https://graph.facebook.com/v3.0/me/messages",
 		qs : {access_token: token},
