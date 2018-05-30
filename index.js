@@ -35,7 +35,7 @@ app.post('/webhook/', function(req, res){
 		if (event.message && event.message.text) {
 			let text = event.message.text
 			decideMessage(sender, text)
-			//sendText(sender, "meteu happy " + text.substring(0,100))
+			sendText(sender, "Escreveu isto: " + text.substring(0,100))
 		}
 
 		if(event.postback) {
@@ -50,7 +50,7 @@ app.post('/webhook/', function(req, res){
 function decideMessage(sender, text1) {
 	let text = text1.toLowerCase()
 	if ( text.includes("summer")) {
-		continue
+
 	} else if (text.includes("ajuda")) {
 		sendGenericMessage(sender)
 	} else{
