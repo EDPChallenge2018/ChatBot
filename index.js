@@ -15,7 +15,7 @@ app.use(bodyParser.json())
 // routes
 
 app.get('/', function(req, res) {
-	res.send("OPAH")
+	res.send("EZPZ")
 })
 
 let token = "EAAbIskuk8dIBAJYXg4nlKFpnY28a9vxcTbuzPxFn2jk7QCCTTAa7UV29o9MybSl1rQWSs4jzpZAZAPZCdZCYYT1cTZC4DYySZCZAi8OzSRj4aN8EaDh6ZBk30YFbBCrg9bqfWaic1RH431UJCBGhNOtUgZBxGZBnm3yX8ablp7FvyChiDGvmTpVhwNkMMIzlJQ7hMZD"
@@ -26,6 +26,7 @@ app.get('/webhook/', function(req, res) {
 	}
 	res.send("wrong token")
 })
+
 app.post('/webhook/', function(req, res){
 	let messaging_events = req.body.entry[0].messaging
 	for (let i = 0; i < messaging_events.length; i++) {
@@ -49,7 +50,7 @@ app.post('/webhook/', function(req, res){
 function decideMessage(sender, text1) {
 	let text = text1.toLowerCase()
 	if ( text.includes("summer")) {
-
+		continue
 	} else if (text.includes("ajuda")) {
 		sendGenericMessage(sender)
 	} else{
@@ -78,7 +79,7 @@ function sendButtonMessage(sender, text){
 	            "type":"postback",
 	            "title":"NAO E FIXE",
 	            "payload":"NAO e fixe"
-	          },
+	          }
 	        ]
 	      }
 	    }
@@ -114,6 +115,7 @@ function sendGenericMessage(sender) {
 }
 
 function sendRequest(sender, text) {
+	//let messageData = {text:text}
 	request({
 		url: "https://graph.facebook.com/v3.0/me/messages",
 		qs : {access_token: token},
