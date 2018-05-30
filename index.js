@@ -34,7 +34,7 @@ app.post('/webhook/', function(req, res){
 		let sender = event.sender.id;
 		if (event.message && event.message.text) {
 			let text = event.message.text;
-			decideMessage(sender, text);
+			//decideMessage(sender, text);
 			sendText(sender, "Escreveu isto: " + text.substring(0,100));
 		}
 
@@ -114,8 +114,8 @@ function sendGenericMessage(sender) {
 	sendRequest(sender, messageData);
 }
 
-function sendRequest(sender, text) {
-	let messageData = {text:text};
+function sendRequest(sender, messageData) {
+	//let messageData = {text:text};
 	request({
 		url: "https://graph.facebook.com/v3.0/me/messages",
 		qs : {access_token: token},
@@ -136,6 +136,7 @@ function sendRequest(sender, text) {
 app.listen(app.get('port'), function() {
 	console.log("running: port");
 });
+
 //<script>
 //window.fbAsyncInit = function() {
 //    FB.init({
