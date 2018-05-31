@@ -2,19 +2,6 @@
 <html>
 <title>Edp Template</title>
 <head>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-</head>
-<style>
-body,h1 {font-family: "Raleway", sans-serif}
-body, html {height: 100%}
-.bgimg {
-    background-image: url('./images/edp.jpg');
-    min-height: 95%;
-    background-position: center;
-    background-size: cover;
-}
-</style>
-<body>
 <script>
 window.fbAsyncInit = function() {
     FB.init({
@@ -33,8 +20,21 @@ window.fbAsyncInit = function() {
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 
-<div class="fb-customerchat" page_id="226748641432465" theme_color="#fa3c4c" logged_in_greeting="Olá! Como posso ajudar-lhe?" logged_out_greeting="Olá! Como posso ajudar-lhe?"> </div>
+    jQuery('body').append('<div class="fb-customerchat" page_id="226748641432465" theme_color="#fa3c4c" logged_in_greeting="Olá! Como posso ajudar-lhe?" logged_out_greeting="Olá! Como posso ajudar-lhe?"> </div>');
 </script>
+</head>
+<style>
+body,h1 {font-family: "Raleway", sans-serif}
+body, html {height: 100%}
+.bgimg {
+    background-image: url('./images/edp.jpg');
+    min-height: 95%;
+    background-position: center;
+    background-size: cover;
+}
+</style>
+<body>
+
 <div class="bgimg">
 </div>
 <div class="fb-customerchat"
