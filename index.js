@@ -15,8 +15,8 @@ app.use(bodyParser.json());
 // routes
 
 app.get('/', function(req, res) {
-	res.send("EZPZ");
-	res.sendFile('/index.html', {root: __dirname })
+	//res.send("EZPZ");
+	res.sendFile('/index.html', {root: __dirname });
 });
 
 let token = "EAAbIskuk8dIBAJYXg4nlKFpnY28a9vxcTbuzPxFn2jk7QCCTTAa7UV29o9MybSl1rQWSs4jzpZAZAPZCdZCYYT1cTZC4DYySZCZAi8OzSRj4aN8EaDh6ZBk30YFbBCrg9bqfWaic1RH431UJCBGhNOtUgZBxGZBnm3yX8ablp7FvyChiDGvmTpVhwNkMMIzlJQ7hMZD";
