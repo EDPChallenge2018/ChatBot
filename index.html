@@ -1,34 +1,45 @@
 <!DOCTYPE html>
 <html>
 <title>Edp Template</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script>
+window.fbAsyncInit = function() {
+    FB.init({
+      appId            : '1909517959098834',
+      autoLogAppEvents : true,
+      xfbml            : true,
+      version          : 'v3.0'
+    });
+  };
+
+(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/pt_PT/sdk/xfbml.customerchat.js';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    jQuery('body').append('<div class="fb-customerchat" page_id="226748641432465" theme_color="#fa3c4c" logged_in_greeting="Olá! Como posso ajudar-lhe?" logged_out_greeting="Olá! Como posso ajudar-lhe?"> </div>');
+</script>
+</head>
 <style>
 body,h1 {font-family: "Raleway", sans-serif}
 body, html {height: 100%}
 .bgimg {
-    background-image: url('../images/edp.jpg');
-    min-height: 100%;
+    background-image: url('./images/edp.jpg');
+    min-height: 95%;
     background-position: center;
     background-size: cover;
 }
 </style>
 <body>
 
-<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
-  <div class="w3-display-topleft w3-padding-large w3-xlarge">
-    Logo
-  </div>
-  <div class="w3-display-middle">
-    <h1 class="w3-jumbo w3-animate-top">EDP University Challenge</h1>
-    <hr class="w3-border-grey" style="margin:auto;width:40%">
-    <p class="w3-large w3-center">10 days left</p>
-  </div>
-  <div class="w3-display-bottomleft w3-padding-large">
-    Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a>
-  </div>
+<div class="bgimg">
+</div>
+<div class="fb-customerchat"
+ page_id="226748641432465">
 </div>
 
 </body>
