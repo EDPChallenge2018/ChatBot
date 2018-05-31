@@ -5,7 +5,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
 const app = express();
-const path = require('path');
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -17,7 +16,7 @@ app.use(bodyParser.json());
 
 app.get('/', function(req, res) {
 	res.send("EZPZ");
-	res.sendFile(path.join(__dirname + '/index.html'));
+	res.sendFile('C:/Users/Alves/Universidade/universidade/3 ano/2 semestre/EDPChallenge/ChatBot/index.html');
 });
 
 let token = "EAAbIskuk8dIBAJYXg4nlKFpnY28a9vxcTbuzPxFn2jk7QCCTTAa7UV29o9MybSl1rQWSs4jzpZAZAPZCdZCYYT1cTZC4DYySZCZAi8OzSRj4aN8EaDh6ZBk30YFbBCrg9bqfWaic1RH431UJCBGhNOtUgZBxGZBnm3yX8ablp7FvyChiDGvmTpVhwNkMMIzlJQ7hMZD";
