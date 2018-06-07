@@ -105,8 +105,8 @@ function sendGenericMessage(sender) {
 	                "type":"web_url",
 	                "url":"https://www.edp.pt/particulares/apoio-cliente/",
 	                "title":"Apoio ao cliente!"
-	              }       
-	            ]      
+	              }
+	            ]
 	          }
 	        ]
 	      }
